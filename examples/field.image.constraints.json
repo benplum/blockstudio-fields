@@ -1,0 +1,21 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "field-image-constraints-example",
+  "title": "Field Image Constraints Example",
+  "attributes": [
+    {
+      "id": "heroImage",
+      "type": "image",
+      "label": "Hero Image",
+      "title": "Select a hero image",
+      "textMediaButton": "Choose image",
+      "textReplaceButton": "Replace image",
+      "textRemoveButton": "Remove image",
+      "minWidth": 1200,
+      "minHeight": 700,
+      "maxWidth": 2600,
+      "maxHeight": 2000,
+      "default": null
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "example-dimension-single",
+  "title": "Example Dimension Single",
+  "attributes": [
+    {
+      "id": "paddingTop",
+      "type": "dimensionSingle",
+      "label": "Padding Top",
+      "spacingScale": [
+        { "label": "None", "value": "none" },
+        { "label": "X-Small", "value": "xsmall" },
+        { "label": "Small", "value": "small" },
+        { "label": "Default", "value": "default" },
+        { "label": "Large", "value": "large" }
+      ],
+      "default": "default",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "pt-{attributes.paddingTop}"
+        }
+      ]
+    }
+  ]
+}

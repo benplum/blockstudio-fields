@@ -1,0 +1,26 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "example-color-options-object-map",
+  "title": "Example Color Options (Object Map)",
+  "attributes": [
+    {
+      "id": "textColor",
+      "type": "colorOptions",
+      "label": "Text Color",
+      "colors": {
+        "default": { "label": "Default", "color": "transparent" },
+        "primary-dark": { "label": "Primary Dark", "color": "var(--color-primary-dark)" },
+        "primary-light": { "label": "Primary Light", "color": "var(--color-primary-light)" },
+        "neutral-1": { "label": "Neutral 1", "color": "var(--color-neutral-1)" }
+      },
+      "clearLabel": "Clear",
+      "default": "",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "text-color-{attributes.textColor}"
+        }
+      ]
+    }
+  ]
+}

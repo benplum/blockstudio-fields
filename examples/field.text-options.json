@@ -1,0 +1,26 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "example-text-options",
+  "title": "Example Text Options",
+  "attributes": [
+    {
+      "id": "textStyle",
+      "type": "textOptions",
+      "label": "Text Style",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "display", "label": "Display" },
+        { "value": "eyebrow", "label": "Eyebrow" },
+        { "value": "muted", "label": "Muted" }
+      ],
+      "clearLabel": "Clear",
+      "default": "",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "text-style-{attributes.textStyle}"
+        }
+      ]
+    }
+  ]
+}

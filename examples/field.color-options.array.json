@@ -1,0 +1,26 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "example-color-options-array",
+  "title": "Example Color Options (Array)",
+  "attributes": [
+    {
+      "id": "backgroundColor",
+      "type": "colorOptions",
+      "label": "Background Color",
+      "options": [
+        { "value": "default", "label": "Default", "color": "transparent" },
+        { "value": "secondary-dark", "label": "Secondary Dark", "color": "var(--color-secondary-dark)" },
+        { "value": "secondary-light", "label": "Secondary Light", "color": "var(--color-secondary-light)" },
+        { "value": "black", "label": "Black", "color": "var(--color-black)" }
+      ],
+      "clearLabel": "Clear",
+      "default": "",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "bg-color-{attributes.backgroundColor}"
+        }
+      ]
+    }
+  ]
+}

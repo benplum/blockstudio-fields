@@ -1,0 +1,98 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "custom-field-types-example",
+  "title": "Custom Field Types Example",
+  "attributes": [
+    {
+      "id": "sizeSingle",
+      "type": "dimensionSingle",
+      "label": "Single Dimension",
+      "spacingScale": [
+        { "label": "None", "value": "none" },
+        { "label": "X-Small", "value": "xsmall" },
+        { "label": "Small", "value": "small" },
+        { "label": "Default", "value": "default" },
+        { "label": "Large", "value": "large" }
+      ],
+      "default": "default",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "u-size-{attributes.sizeSingle}"
+        }
+      ]
+    },
+    {
+      "id": "margin",
+      "type": "dimensions",
+      "label": "Margin",
+      "spacingScale": [
+        { "label": "None", "value": "none" },
+        { "label": "X-Small", "value": "xsmall" },
+        { "label": "Small", "value": "small" },
+        { "label": "Default", "value": "default" },
+        { "label": "Large", "value": "large" }
+      ],
+      "sides": ["top", "right", "bottom", "left"],
+      "default": {
+        "top": "default",
+        "right": "default",
+        "bottom": "default",
+        "left": "default"
+      },
+      "set": [
+        {
+          "attribute": "class",
+          "value": "mt-{attributes.margin.top} mr-{attributes.margin.right} mb-{attributes.margin.bottom} ml-{attributes.margin.left}"
+        }
+      ]
+    },
+    {
+      "id": "textColor",
+      "type": "colorOptions",
+      "label": "Text Color",
+      "colors": {
+        "default": { "label": "Default", "color": "transparent" },
+        "primary-dark": { "label": "Primary Dark", "color": "var(--color-primary-dark)" },
+        "primary-light": { "label": "Primary Light", "color": "var(--color-primary-light)" },
+        "neutral-1": { "label": "Neutral 1", "color": "var(--color-neutral-1)" }
+      },
+      "clearLabel": "Clear",
+      "default": "",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "text-color-{attributes.textColor}"
+        }
+      ]
+    },
+    {
+      "id": "status",
+      "type": "toggleValues",
+      "label": "Status",
+      "onValue": "enabled",
+      "offValue": "disabled",
+      "default": "disabled",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "is-{attributes.status}"
+        }
+      ]
+    },
+    {
+      "id": "heroImage",
+      "type": "image",
+      "label": "Hero Image",
+      "title": "Select a hero image",
+      "textMediaButton": "Choose image",
+      "textReplaceButton": "Replace image",
+      "textRemoveButton": "Remove image",
+      "minWidth": 1200,
+      "minHeight": 700,
+      "maxWidth": 2600,
+      "maxHeight": 2000,
+      "default": null
+    }
+  ]
+}

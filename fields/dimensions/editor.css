@@ -1,0 +1,85 @@
+.blockstudio-fields__field--dimensions .components-base-control {
+	margin-bottom: 0;
+}
+
+.blockstudio-dimensions {
+	display: grid;
+	gap: 12px;
+	background: var(--wp-components-color-base, #fff);
+}
+
+.blockstudio-dimensions__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.blockstudio-dimensions__modes .components-button {
+	min-width: 34px;
+}
+
+.blockstudio-dimensions__linked {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.blockstudio-dimensions__linked .components-base-control {
+	margin: 0;
+}
+
+.blockstudio-dimensions__linked .components-toggle-control__label {
+	margin-right: 0;
+	font-size: 12px;
+}
+
+.blockstudio-dimensions__controls {
+	display: grid;
+	gap: 8px;
+}
+
+.blockstudio-dimensions__control {
+	display: grid;
+	grid-template-columns: 30px minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 10px;
+}
+
+.blockstudio-dimensions__side-icon.components-button {
+	height: 30px;
+	width: 30px;
+	justify-content: center;
+	text-transform: capitalize;
+}
+
+.blockstudio-dimensions__slider .components-base-control__field {
+	margin-bottom: 0;
+}
+
+.blockstudio-dimensions__slider .components-range-control__wrapper {
+	margin-bottom: 0;
+}
+
+.blockstudio-dimensions__slider .components-range-control__marks {
+	display: none;
+}
+
+.blockstudio-dimensions__slider .components-range-control__tooltip {
+	display: none;
+}
+
+.blockstudio-dimensions__slug {
+	min-width: 64px;
+	margin-left: 6px;
+	font-size: 12px;
+	line-height: 1;
+	font-weight: 500;
+	color: var(--wp-components-color-foreground, #1e1e1e);
+}
+
+.blockstudio-dimensions__clear.components-button {
+	justify-self: flex-start;
+	padding: 0;
+	min-height: auto;
+}

@@ -1,0 +1,47 @@
+.blockstudio-fields__field--textOptions .components-base-control {
+	margin-bottom: 0;
+}
+
+.blockstudio-fields__field--text-options .components-base-control {
+	margin-bottom: 0;
+}
+
+.blockstudio-text-options {
+	display: grid;
+	gap: 8px;
+}
+
+.blockstudio-text-options__buttons {
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 6px;
+}
+
+.blockstudio-text-options__buttons .components-button {
+	margin: 0;
+}
+
+.blockstudio-text-options__button.components-button {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	min-height: 34px;
+	padding: 6px 8px;
+	text-align: left;
+}
+
+.blockstudio-text-options__label {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.blockstudio-text-options__clear.components-button {
+	justify-self: flex-start;
+	padding: 0;
+	min-height: auto;
+}

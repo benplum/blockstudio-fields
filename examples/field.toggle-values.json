@@ -1,0 +1,21 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "field-toggle-values-example",
+  "title": "Field Toggle Values Example",
+  "attributes": [
+    {
+      "id": "status",
+      "type": "toggleValues",
+      "label": "Status",
+      "onValue": "enabled",
+      "offValue": "disabled",
+      "default": "disabled",
+      "set": [
+        {
+          "attribute": "class",
+          "value": "is-{attributes.status}"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "example-dimensions",
+  "title": "Example Dimensions",
+  "attributes": [
+    {
+      "id": "padding",
+      "type": "dimensions",
+      "label": "Padding",
+      "spacingScale": [
+        { "label": "None", "value": "none" },
+        { "label": "X-Small", "value": "xsmall" },
+        { "label": "Small", "value": "small" },
+        { "label": "Default", "value": "default" },
+        { "label": "Large", "value": "large" }
+      ],
+      "sides": ["top", "right", "bottom", "left"],
+      "default": {
+        "top": "default",
+        "right": "default",
+        "bottom": "default",
+        "left": "default"
+      },
+      "set": [
+        {
+          "attribute": "class",
+          "value": "pt-{attributes.padding.top} pr-{attributes.padding.right} pb-{attributes.padding.bottom} pl-{attributes.padding.left}"
+        }
+      ]
+    }
+  ]
+}
