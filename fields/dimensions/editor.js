@@ -244,7 +244,7 @@
 			};
 		};
 
-		window.blockstudio.registerFieldType( 'dimensions', {
+		window.blockstudio.registerFieldType( 'blockstudio-fields/dimensions', {
 			component: function DimensionsField( props ) {
 				const spacingScale = getSpacingScale( props?.spacingScale );
 				if ( spacingScale.length === 0 ) {

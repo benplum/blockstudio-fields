@@ -5,7 +5,7 @@
   "attributes": [
     {
       "id": "sizeSingle",
-      "type": "dimensionSingle",
+      "type": "blockstudio-fields/dimension-single",
       "label": "Single Dimension",
       "spacingScale": [
         { "label": "None", "value": "none" },
@@ -24,7 +24,7 @@
     },
     {
       "id": "margin",
-      "type": "dimensions",
+      "type": "blockstudio-fields/dimensions",
       "label": "Margin",
       "spacingScale": [
         { "label": "None", "value": "none" },
@@ -49,7 +49,7 @@
     },
     {
       "id": "textColor",
-      "type": "colorOptions",
+      "type": "blockstudio-fields/color-options",
       "label": "Text Color",
       "colors": {
         "default": { "label": "Default", "color": "transparent" },
@@ -68,7 +68,7 @@
     },
     {
       "id": "status",
-      "type": "toggleValues",
+      "type": "blockstudio-fields/toggle-values",
       "label": "Status",
       "onValue": "enabled",
       "offValue": "disabled",
@@ -82,7 +82,7 @@
     },
     {
       "id": "heroImage",
-      "type": "image",
+      "type": "blockstudio-fields/image",
       "label": "Hero Image",
       "title": "Select a hero image",
       "textMediaButton": "Choose image",

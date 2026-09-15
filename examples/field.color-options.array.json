@@ -5,7 +5,7 @@
   "attributes": [
     {
       "id": "backgroundColor",
-      "type": "colorOptions",
+      "type": "blockstudio-fields/color-options",
       "label": "Background Color",
       "options": [
         { "value": "default", "label": "Default", "color": "transparent" },
@@ -13,6 +13,8 @@
         { "value": "secondary-light", "label": "Secondary Light", "color": "var(--color-secondary-light)" },
         { "value": "black", "label": "Black", "color": "var(--color-black)" }
       ],
+      "allowCustom": true,
+      "customLabel": "Custom",
       "clearLabel": "Clear",
       "default": "",
       "set": [

@@ -5,7 +5,7 @@
   "attributes": [
     {
       "id": "padding",
-      "type": "dimensions",
+      "type": "blockstudio-fields/dimensions",
       "label": "Padding",
       "spacingScale": [
         { "label": "None", "value": "none" },

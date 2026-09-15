@@ -5,7 +5,7 @@
   "attributes": [
     {
       "id": "textColor",
-      "type": "colorOptions",
+      "type": "blockstudio-fields/color-options",
       "label": "Text Color",
       "colors": {
         "default": { "label": "Default", "color": "transparent" },

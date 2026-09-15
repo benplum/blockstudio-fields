@@ -11,13 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Blockstudio_Fields_Field_Type_Image implements Blockstudio_Fields_Field_Type {
 	public function get_key(): string {
-		return 'image';
+		return 'blockstudio-fields/image';
 	}
 
 	public function get_type_definition(): array {
 		return array(
-			'attribute' => 'number',
-			'default'   => null,
+			'attribute'     => 'number',
+			'default'       => null,
+			'editor_script' => $this->get_editor_script_handle(),
 		);
 	}
 

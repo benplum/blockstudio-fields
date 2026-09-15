@@ -5,7 +5,7 @@
   "attributes": [
     {
       "id": "heroImage",
-      "type": "image",
+      "type": "blockstudio-fields/image",
       "label": "Hero Image",
       "title": "Select a hero image",
       "textMediaButton": "Choose image",

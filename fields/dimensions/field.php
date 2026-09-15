@@ -11,13 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Blockstudio_Fields_Field_Type_Dimensions implements Blockstudio_Fields_Field_Type {
 	public function get_key(): string {
-		return 'dimensions';
+		return 'blockstudio-fields/dimensions';
 	}
 
 	public function get_type_definition(): array {
 		return array(
-			'attribute' => 'object',
-			'default'   => null,
+			'attribute'     => 'object',
+			'default'       => null,
+			'editor_script' => $this->get_editor_script_handle(),
+			'editor_style'  => $this->get_editor_style_handle(),
 		);
 	}
 

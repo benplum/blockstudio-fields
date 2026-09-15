@@ -5,7 +5,7 @@
   "attributes": [
     {
       "id": "textStyle",
-      "type": "textOptions",
+      "type": "blockstudio-fields/text-options",
       "label": "Text Style",
       "options": [
         { "value": "default", "label": "Default" },

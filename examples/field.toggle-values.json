@@ -5,7 +5,7 @@
   "attributes": [
     {
       "id": "status",
-      "type": "toggleValues",
+      "type": "blockstudio-fields/toggle-values",
       "label": "Status",
       "onValue": "enabled",
       "offValue": "disabled",

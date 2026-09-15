@@ -76,7 +76,7 @@
       return [];
     };
 
-    window.blockstudio.registerFieldType( 'textOptions', {
+    window.blockstudio.registerFieldType( 'blockstudio-fields/text-options', {
       component: function TextOptionsField( props ) {
         const defaultValue =
           typeof props?.defaultValue === 'string' ? props.defaultValue : '';

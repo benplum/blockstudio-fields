@@ -125,6 +125,17 @@
   };
 
   const getPreviewUrl = ( value, resolvedMedia ) => {
+    const valueThumbnailUrl = value?.sizes?.thumbnail?.url;
+    if ( typeof valueThumbnailUrl === 'string' && valueThumbnailUrl ) {
+      return valueThumbnailUrl;
+    }
+
+    const mediaThumbnailUrl =
+      resolvedMedia?.media_details?.sizes?.thumbnail?.source_url;
+    if ( typeof mediaThumbnailUrl === 'string' && mediaThumbnailUrl ) {
+      return mediaThumbnailUrl;
+    }
+
     if ( value && typeof value === 'object' && typeof value.url === 'string' ) {
       return value.url;
     }
@@ -141,6 +152,17 @@
   };
 
   const getPreviewSize = ( value, resolvedMedia ) => {
+    const thumbWidth =
+      toFiniteNumber( value?.sizes?.thumbnail?.width ) ??
+      toFiniteNumber( resolvedMedia?.media_details?.sizes?.thumbnail?.width );
+    const thumbHeight =
+      toFiniteNumber( value?.sizes?.thumbnail?.height ) ??
+      toFiniteNumber( resolvedMedia?.media_details?.sizes?.thumbnail?.height );
+
+    if ( thumbWidth !== null && thumbHeight !== null ) {
+      return `${ thumbWidth }x${ thumbHeight }`;
+    }
+
     const width =
       toFiniteNumber( value?.width ) ?? toFiniteNumber( resolvedMedia?.media_details?.width );
     const height =
@@ -151,6 +173,29 @@
     }
 
     return `${ width }x${ height }`;
+  };
+
+  const getPreviewName = ( value, resolvedMedia ) => {
+    const valueName =
+      value?.filename ||
+      value?.name ||
+      value?.title;
+
+    if ( typeof valueName === 'string' && valueName ) {
+      return valueName;
+    }
+
+    const mediaName =
+      resolvedMedia?.filename ||
+      resolvedMedia?.media_details?.file?.split( '/' )?.pop() ||
+      resolvedMedia?.title?.rendered ||
+      resolvedMedia?.title;
+
+    if ( typeof mediaName === 'string' && mediaName ) {
+      return mediaName;
+    }
+
+    return '';
   };
 
   const toStoredValue = ( mediaObject ) => {
@@ -184,7 +229,7 @@
     const { Button, Notice } = window.wp.components;
     const { useSelect } = window.wp.data;
 
-    window.blockstudio.registerFieldType( 'image', {
+    window.blockstudio.registerFieldType( 'blockstudio-fields/image', {
       component: function ImageField( props ) {
         const onChange =
           typeof props?.onChange === 'function' ? props.onChange : null;
@@ -224,6 +269,7 @@
         );
 
         const previewUrl = getPreviewUrl( value, resolvedMedia );
+        const previewName = getPreviewName( value, resolvedMedia );
         const previewSize = getPreviewSize( value, resolvedMedia );
 
         const didInitDefault = useRef( false );
@@ -418,40 +464,75 @@
           previewUrl
             ? el(
                 'div',
-                { className: 'blockstudio-image-field__preview', style: { marginBottom: '12px' } },
+                {
+                  className: 'blockstudio-image-field__preview',
+                  style: {
+                    marginBottom: '12px',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '12px',
+                  },
+                },
                 el( 'img', {
                   src: previewUrl,
                   alt: '',
                   style: {
                     display: 'block',
-                    width: '100%',
-                    maxWidth: '260px',
-                    height: 'auto',
-                    borderRadius: '4px',
+                    flexShrink: 0,
+                    width: '80px',
+                    height: '80px',
+                    objectFit: 'cover'
                   },
                 } ),
-                previewSize
-                  ? el(
-                      'div',
-                      {
-                        className: 'blockstudio-image-field__meta',
-                        style: {
-                          marginTop: '6px',
-                          color: '#646970',
-                          fontSize: '12px',
+                el(
+                  'div',
+                  {
+                    className: 'blockstudio-image-field__details',
+                    style: {
+                      minWidth: 0,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '4px',
+                    },
+                  },
+                  previewName
+                    ? el(
+                        'div',
+                        {
+                          className: 'blockstudio-image-field__name',
+                          style: {
+                            color: '#1e1e1e',
+                            fontSize: '13px',
+                            fontWeight: '500',
+                            lineHeight: 1.3,
+                            wordBreak: 'break-word',
+                          },
                         },
-                      },
-                      `${ previewSize } px`
-                    )
-                  : null
+                        previewName
+                      )
+                    : null,
+                  // previewSize
+                  //   ? el(
+                  //       'div',
+                  //       {
+                  //         className: 'blockstudio-image-field__meta',
+                  //         style: {
+                  //           color: '#646970',
+                  //           fontSize: '12px',
+                  //         },
+                  //       },
+                  //       `${ previewSize } px`
+                  //     )
+                  //   : null
+                )
               )
             : null,
           el( Button, {
             variant: 'secondary',
             onClick: openFrame,
             text: previewUrl
-              ? props?.replaceButtonLabel || 'Replace'
-              : props?.buttonLabel || 'Select',
+              ? props?.replaceButtonLabel || 'Replace Image'
+              : props?.buttonLabel || 'Open Media Library',
           } ),
           hasValue( value )
             ? el( Button, {

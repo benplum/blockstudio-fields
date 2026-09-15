@@ -1,3 +1,7 @@
 .blockstudio-fields__field--dimensionSingle .components-base-control {
 	margin-bottom: 0;
 }
+
+.blockstudio-fields__field--dimension-single .components-base-control {
+	margin-bottom: 0;
+}

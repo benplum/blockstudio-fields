@@ -48,6 +48,62 @@
 	box-shadow: 0 0 0 1px white;
 }
 
+.blockstudio-color-options__tabs {
+	display: flex;
+	gap: 4px;
+	margin-bottom: 4px;
+	border-bottom: 1px solid #ddd;
+}
+
+.blockstudio-color-options__tab.components-button {
+	border-radius: 0;
+	padding: 4px 2px;
+	box-shadow: none;
+	font-weight: 500;
+	color: #757575;
+}
+
+.blockstudio-color-options__tab.components-button.is-active {
+	box-shadow: inset 0 -2px #1e1e1e;
+	color: #1e1e1e;
+}
+
+.blockstudio-color-options__custom-row {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 4px;
+}
+
+.blockstudio-color-options__custom-preview {
+	flex: 0 0 auto;
+	width: 24px;
+	height: 24px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 2px;
+	/* The chosen color (faked as a two-stop gradient so it can share the
+	   background-image stack - see the custom-tab swatch note below)
+	   paints over a checkerboard, which only shows through while
+	   --blockstudio-color-options-preview is unset or invalid, i.e. "no
+	   color chosen yet" or "mid-typing an incomplete hex". */
+	background-image:
+		linear-gradient(var(--blockstudio-color-options-preview, transparent), var(--blockstudio-color-options-preview, transparent)),
+		linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc),
+		linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
+	background-size: auto, 8px 8px, 8px 8px;
+	background-position: 0 0, 0 0, 4px 4px;
+}
+
+.blockstudio-color-options__custom-input {
+	flex: 1 1 auto;
+	margin-top: 0;
+}
+
+.blockstudio-color-options__custom-input input {
+	font-family: monospace;
+	text-transform: lowercase;
+}
+
 .blockstudio-color-options__clear.components-button {
 	justify-self: flex-start;
 	padding: 0;

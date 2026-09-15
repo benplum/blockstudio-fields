@@ -45,7 +45,7 @@
     const { createElement: el, useEffect, useRef } = window.wp.element;
     const { ToggleControl } = window.wp.components;
 
-    window.blockstudio.registerFieldType( 'toggleValues', {
+    window.blockstudio.registerFieldType( 'blockstudio-fields/toggle-values', {
       component: function ToggleValuesField( props ) {
         const onChange =
           typeof props?.onChange === 'function' ? props.onChange : null;

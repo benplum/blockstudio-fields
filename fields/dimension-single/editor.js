@@ -43,7 +43,7 @@
 			);
 		};
 
-		window.blockstudio.registerFieldType( 'dimensionSingle', {
+		window.blockstudio.registerFieldType( 'blockstudio-fields/dimension-single', {
 			component: function DimensionSingleField( props ) {
 				const defaultValue =
 					typeof props?.defaultValue === 'string' ? props.defaultValue : '';

@@ -1,6 +1,6 @@
 <?php
 /**
- * Toggle values field type.
+ * Google Map field type.
  *
  * @package BlockstudioFields
  */
@@ -9,25 +9,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	return null;
 }
 
-final class Blockstudio_Fields_Field_Type_Toggle_Values implements Blockstudio_Fields_Field_Type {
+final class Blockstudio_Fields_Field_Type_Google_Map implements Blockstudio_Fields_Field_Type {
 	public function get_key(): string {
-		return 'blockstudio-fields/toggle-values';
+		return 'blockstudio-fields/google-map';
 	}
 
 	public function get_type_definition(): array {
 		return array(
-			'attribute'     => 'string',
-			'default'       => '',
+			'attribute'     => 'object',
+			'default'       => null,
 			'editor_script' => $this->get_editor_script_handle(),
 		);
 	}
 
 	public function get_editor_script_handle(): string {
-		return 'blockstudio-fields-toggle-values-editor';
+		return 'blockstudio-fields-google-map-editor';
 	}
 
 	public function get_editor_script_path(): string {
-		return 'fields/toggle-values/editor.js';
+		return 'fields/google-map/editor.js';
 	}
 
 	public function get_editor_script_dependencies(): array {
@@ -35,7 +35,7 @@ final class Blockstudio_Fields_Field_Type_Toggle_Values implements Blockstudio_F
 	}
 
 	public function get_editor_style_handle(): string {
-		return 'blockstudio-fields-toggle-values-editor';
+		return 'blockstudio-fields-google-map-editor';
 	}
 
 	public function get_editor_style_path(): string {
@@ -47,4 +47,4 @@ final class Blockstudio_Fields_Field_Type_Toggle_Values implements Blockstudio_F
 	}
 }
 
-return new Blockstudio_Fields_Field_Type_Toggle_Values();
+return new Blockstudio_Fields_Field_Type_Google_Map();
