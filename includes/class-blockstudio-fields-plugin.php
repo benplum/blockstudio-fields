@@ -32,6 +32,10 @@ final class Blockstudio_Fields_Plugin {
 		$this->plugin_url  = trailingslashit( plugin_dir_url( $plugin_file ) );
 
 		require_once $this->plugin_path . 'includes/field-types/interface-blockstudio-fields-field-type.php';
+		require_once $this->plugin_path . 'includes/vendor/pw-updater.php';
+		require_once $this->plugin_path . 'includes/class-blockstudio-fields-updater.php';
+
+		new Blockstudio_Fields_Updater( $plugin_file );
 
 		$this->field_types = $this->load_field_types();
 
