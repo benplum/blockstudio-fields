@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Blockstudio_Fields_Plugin {
-	private const VERSION = '0.1.9';
+	private const VERSION = '1.1.0';
 
 	/**
 	 * @var Blockstudio_Fields_Field_Type[]
