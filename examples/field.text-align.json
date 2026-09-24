@@ -1,0 +1,23 @@
+{
+  "$schema": "https://blockstudio.dev/schema/field",
+  "name": "example-text-align",
+  "title": "Example Text Align",
+  "attributes": [
+    {
+      "id": "textAlignResponsive",
+      "type": "blockstudio-fields/text-align",
+      "label": "Text Align",
+      "clearLabel": "Clear",
+      "default": {
+        "tablet": "",
+        "mobile": ""
+      },
+      "set": [
+        {
+          "attribute": "class",
+          "value": "has-tablet-text-align-{attributes.textAlignResponsive.tablet} has-mobile-text-align-{attributes.textAlignResponsive.mobile}"
+        }
+      ]
+    }
+  ]
+}

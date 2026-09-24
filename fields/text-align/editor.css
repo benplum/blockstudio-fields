@@ -1,0 +1,31 @@
+.blockstudio-fields__field--text-align .components-base-control {
+	margin-bottom: 0;
+}
+
+.blockstudio-text-align .components-tab-panel__tabs {
+	margin-bottom: 8px;
+}
+
+.blockstudio-text-align .components-tab-panel__tab-content {
+	padding-top: 4px;
+}
+
+.blockstudio-text-align__row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.blockstudio-text-align__buttons .components-button {
+	margin: 0;
+}
+
+.blockstudio-text-align__button.components-button {
+	min-width: 34px;
+	justify-content: center;
+}
+
+.blockstudio-text-align__clear.components-button {
+	padding: 0;
+	min-height: auto;
+}
