@@ -124,6 +124,39 @@
     return messages;
   };
 
+  const getConstraintText = ( constraints ) => {
+    let minText = '';
+    let maxText = '';
+    const {
+      minWidth,
+      maxWidth,
+      minHeight,
+      maxHeight,
+    } = constraints;
+
+    if ( minWidth !== null && minHeight !== null ) {
+      minText = `Min ${ minWidth }x${ minHeight }px`;
+    } else if ( minWidth !== null ) {
+      minText = `Min width ${ minWidth }px`;
+    } else if ( minHeight !== null ) {
+      minText = `Min height ${ minHeight }px`;
+    }
+
+    if ( maxWidth !== null && maxHeight !== null ) {
+      maxText = `Max ${ maxWidth }x${ maxHeight }px`;
+    } else if ( maxWidth !== null ) {
+      maxText = `Max width ${ maxWidth }px`;
+    } else if ( maxHeight !== null ) {
+      maxText = `Max height ${ maxHeight }px`;
+    }
+
+    if ( minText && maxText ) {
+      return `${ minText }, ${ maxText }`;
+    }
+
+    return minText || maxText;
+  };
+
   const getPreviewUrl = ( value, resolvedMedia ) => {
     const valueThumbnailUrl = value?.sizes?.thumbnail?.url;
     if ( typeof valueThumbnailUrl === 'string' && valueThumbnailUrl ) {
@@ -271,6 +304,10 @@
         const previewUrl = getPreviewUrl( value, resolvedMedia );
         const previewName = getPreviewName( value, resolvedMedia );
         const previewSize = getPreviewSize( value, resolvedMedia );
+        const constraintText = useMemo(
+          () => getConstraintText( constraints ),
+          [ constraints ]
+        );
 
         const didInitDefault = useRef( false );
         const defaultInitAttempts = useRef( 0 );
@@ -545,6 +582,21 @@
                   onChange?.( null );
                 },
               } )
+            : null,
+          constraintText
+            ? el(
+                'div',
+                {
+                  className: 'blockstudio-image-field__constraints',
+                  style: {
+                    marginTop: '8px',
+                    color: '#646970',
+                    fontSize: '12px',
+                    lineHeight: 1.4,
+                  },
+                },
+                constraintText
+              )
             : null
         );
       },
