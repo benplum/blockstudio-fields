@@ -2,8 +2,9 @@
 /**
  * Plugin Name: Blockstudio Fields
  * Description: External field type registrations for Blockstudio.
- * Version: 1.2.0
- * Author: Blockstudio
+ * Plugin URI: https://github.com/benplum/blockstudio-fields
+ * Version: 1.3.0
+ * Author: Ben Plum
  * Requires at least: 6.7
  * Requires PHP: 8.2
  * Requires Plugins: blockstudio
