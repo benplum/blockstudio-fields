@@ -24,10 +24,14 @@
     const { useDispatch, useSelect } = window.wp.data;
 
     // "desktop" isn't a tier this field stores itself — it reads/writes the
-    // block's own native `textAlign` attribute (the same one the toolbar's
-    // alignment control uses) so there's a single source of truth instead
-    // of a shadow copy that can drift. "tablet"/"mobile" are this field's
-    // own overrides.
+    // block's own native alignment (the same value the toolbar's alignment
+    // control uses) so there's a single source of truth instead of a shadow
+    // copy that can drift. Core keeps it in the typography block support
+    // (`style.typography.textAlign`; core/heading and core/paragraph moved
+    // there and dropped their top-level attribute), so that's the default.
+    // A block that still declares a top-level `textAlign` attribute without
+    // the support is read and written there instead. "tablet"/"mobile" are
+    // this field's own overrides.
     // Same dashicons WordPress's own Customizer responsive-preview switcher
     // uses for these three device tiers.
     const TABS = [
@@ -96,15 +100,33 @@
         const clientId = props?.clientId || null;
         const clearLabel = props?.clearLabel || 'Clear';
 
-        // Desktop: the block's own native attribute, not ours.
-        const nativeTextAlign = useSelect(
+        // Desktop: the block's own native alignment, not ours.
+        const { nativeTextAlign, nativeStyle, usesLegacyAttribute } = useSelect(
           ( select ) => {
             if ( ! clientId ) {
-              return '';
+              return { nativeTextAlign: '', nativeStyle: null, usesLegacyAttribute: false };
             }
 
-            const blockAttributes = select( 'core/block-editor' ).getBlockAttributes( clientId );
-            return typeof blockAttributes?.textAlign === 'string' ? blockAttributes.textAlign : '';
+            const blockEditor = select( 'core/block-editor' );
+            const blockAttributes = blockEditor.getBlockAttributes( clientId ) || {};
+            const blockName = blockEditor.getBlockName( clientId );
+            const blockType = blockName ? select( 'core/blocks' ).getBlockType( blockName ) : null;
+
+            // Only fall back to the old top-level attribute when the block
+            // declares it and doesn't opt into the typography support.
+            const hasTypographySupport = !! blockType?.supports?.typography?.textAlign;
+            const hasLegacyAttribute = !! blockType?.attributes?.textAlign;
+            const legacy = hasLegacyAttribute && ! hasTypographySupport;
+
+            const rawValue = legacy
+              ? blockAttributes.textAlign
+              : blockAttributes.style?.typography?.textAlign;
+
+            return {
+              nativeTextAlign: typeof rawValue === 'string' ? rawValue : '',
+              nativeStyle: blockAttributes.style || null,
+              usesLegacyAttribute: legacy,
+            };
           },
           [ clientId ]
         );
@@ -114,7 +136,33 @@
             return;
           }
 
-          updateBlockAttributes( clientId, { textAlign: nextValue } );
+          if ( usesLegacyAttribute ) {
+            updateBlockAttributes( clientId, { textAlign: nextValue } );
+            return;
+          }
+
+          // Mirror what core's alignment control stores: the key is removed
+          // when cleared, and empty typography/style objects aren't left
+          // behind, so clearing here looks the same as clearing in the toolbar.
+          const typography = { ...( nativeStyle?.typography || {} ) };
+
+          if ( nextValue ) {
+            typography.textAlign = nextValue;
+          } else {
+            delete typography.textAlign;
+          }
+
+          const style = { ...( nativeStyle || {} ) };
+
+          if ( Object.keys( typography ).length ) {
+            style.typography = typography;
+          } else {
+            delete style.typography;
+          }
+
+          updateBlockAttributes( clientId, {
+            style: Object.keys( style ).length ? style : undefined,
+          } );
         };
 
         // Tablet / mobile: this field's own attribute.
